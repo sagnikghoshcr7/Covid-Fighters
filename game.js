@@ -56,7 +56,7 @@ function init() {
         w: 60,
         h: 60,
         speed: 20,
-        // moving : false,
+        moving : false,
     };
 
     gem = {
@@ -65,6 +65,15 @@ function init() {
         w: 60,
         h: 60,
     };
+
+    // listen to events on the canvas
+    canvas.addEventListener('mousedown', function() {
+        player.moving = true;
+    });
+
+    canvas.addEventListener('mouseup', function () {
+        player.moving = false;
+    });
 }
 
 function draw() {
@@ -87,6 +96,13 @@ function draw() {
 }
 
 function update() {
+    
+    //if the player is moving
+    if (player.moving == true) {
+        player.x += player.speed;
+    }
+
+
     // move the box downwards
     // update each enemy by the same logic (using loop)
     for (let i=0; i<enemy.length; i++) {
